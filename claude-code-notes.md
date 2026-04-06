@@ -240,59 +240,57 @@
 ## 4. Advanced
 
 ### Security Review & Output Styles
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `4/9`
+- **Why:** The security review feature allows running vulnerability analyses — covering authentication issues, SQL injection risks, dependency vulnerabilities, and insecure data handling — directly from the terminal using `claude review security`. Output styles allow customizing how Claude Code communicates, either through built-in styles or custom ones that modify the system prompt to adopt a specific persona or format. Both features have potential value but are not high priorities in the current workflow.
+- **When:** Security review becomes relevant before committing code to any production-adjacent repository, particularly if instructed to run a security audit as part of a code review process. Output styles become relevant if there is a specific need to receive information in a structured format that the existing Claude Code skills do not already cover.
+- **What:** For your role at EonLabs, neither feature is immediately critical. The security review command is a useful safeguard but is not yet efficient enough to be a reliable part of the standard workflow. Custom output styles are an interesting capability, but given that Claude Code skills already handle most formatting and persona needs, this adds limited additional value. Both are worth revisiting as the tooling matures and the workflow scales up.
 
 ### Simplify Command & Scheduling
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `6/9`
+- **Why:** The `simplify` command allows you to review changed code for quality, inefficiency, and specific issues, and then have Claude Code fix them automatically. This is a built-in alternative to custom code review skills, making it a useful fallback when ccSkills does not cover a specific review need. Scheduling, on the other hand, is not relevant for this role since work is done actively during live sessions rather than through deferred or timed tasks.
+- **When:** The `simplify` command is relevant after any meaningful code change — particularly when reviewing a feature addition or modification to an EonLabs repository before it is committed. It is especially useful as a quick quality check when ccSkills does not have a skill tailored to the specific type of review needed.
+- **What:** For your role at EonLabs, the `simplify` command serves as a reliable code quality tool that is always available regardless of which skills are loaded. It supports the research engineering workflow by ensuring that code produced during a session meets a baseline standard of quality and efficiency before moving forward. Scheduling can be disregarded entirely for the current workflow.
 
 ### Code Review & Agent SDK
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `6/9`
+- **Why:** The `code-review` command performs a comprehensive review of the entire codebase as context, identifying errors, inefficiencies, and security vulnerabilities across the board — broader in scope than the security review command which focuses strictly on security. It is particularly valuable before releasing a new version of a repository that includes significant changes or new features. The Agent SDK, by contrast, allows calling Claude directly from within project code using Python or TypeScript, but is not a current priority given that Claude Code is already being used as the primary assistant and there is no need to embed AI calls directly into the project files.
+- **When:** The `code-review` command is relevant any time a major feature addition or repository update is ready for release, or when monitoring a repository for accumulated technical debt. It requires extended context capacity but delivers a thorough, holistic review that covers the entire codebase. The Agent SDK becomes relevant only if there is a future need to integrate Claude directly into the EonLabs project code — for example, calling Claude 3.5 Sonnet via Azure as part of an automated pipeline.
+- **What:** For your role at EonLabs, the `code-review` command is directly applicable to the core responsibility of monitoring repositories and developing new features. Running a full codebase review before committing significant changes ensures that new features do not introduce regressions or vulnerabilities into the Enigma Trading System. The Agent SDK is worth understanding conceptually but is not actionable in the current workflow — if AI integration into project code is ever needed, a hosted model via Azure would be the more appropriate route.
 
 ### Persistent Context: Claude.md & Rules
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `9/9`
+- **Why:** The CLAUDE.md file serves two critical functions — storing persistent conversation context so Claude Code retains relevant project knowledge across sessions, and defining hard rules that constrain how Claude Code operates within a specific project. Both functions are directly essential to a research engineering workflow where consistency, discipline, and efficiency across sessions are non-negotiable.
+- **When:** Relevant from the very first session on any EonLabs repository and maintained continuously throughout the project lifecycle. Context should be updated whenever new architectural decisions, research findings, or conventions are established. Rules should be defined upfront and revised whenever a new constraint or research principle needs to be enforced persistently.
+- **What:** For your role at EonLabs, the CLAUDE.md file is the single most important configuration artifact in the workflow. It is where Terry's research principles can be encoded permanently — parameterless design requirements, walk-forward validation standards, baseline-first thinking, and restrictions on inheriting arbitrary defaults from papers or AI-generated code. Storing context here means every session starts informed rather than from scratch, and defining rules here means Claude Code operates within the right boundaries automatically, without needing to be reminded every time. This is the foundation that makes everything else in the workflow reliable and repeatable.
 
 ### Claude Auto Memory & Troubleshooting
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `7/9`
+- **Why:** Auto memory allows Claude Code to retain specific context from a session so that future prompts can leverage stored knowledge without re-scanning the entire codebase. This is a meaningful efficiency gain on large projects where re-reading extensive files on every prompt would consume unnecessary tokens and slow down the workflow. Keeping the memory.md file concise — within 200 lines — is critical to preventing context confusion.
+- **When:** Relevant on any project where the repository is large enough that full codebase re-scanning on every prompt would be inefficient. At EonLabs, where the Enigma Trading System involves significant amounts of code and research context, auto memory becomes increasingly valuable as the project grows. Troubleshooting memory — by running the memory command and verifying the memory.md file — is relevant whenever Claude Code's responses suggest it has lost or misread the stored context.
+- **What:** For your role at EonLabs, auto memory is a practical token efficiency tool. Rather than letting Claude Code scan everything from scratch each time, you can instruct it to remember the most relevant details from each session — key architectural decisions, current research hypotheses, active constraints — and retrieve that context efficiently in subsequent sessions. Keeping the memory file lean and well-maintained is as important as populating it, since an oversized or cluttered memory file can degrade rather than improve Claude Code's performance.
 
 ### Agent Skills: Activation, Scripts & Dynamic Content
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `9/9`
+- **Why:** Agent skills are the primary mechanism for extending Claude Code's capabilities beyond its defaults. By defining skills in a structured folder with clear triggers and instructions, Claude Code can automatically detect when a specific skill is needed and execute it accordingly. The ccSkills repository already provides a rich library of pre-built skills, and new ones can be created or extended as the workflow demands. Proper activation — meaning correctly defined triggers — is the most critical part, as a misconfigured trigger will cause Claude to ignore the skill entirely.
+- **When:** Relevant from the very first session and continuously throughout the research engineering workflow. Any time a repeatable task or specialized capability is needed — such as humanizing output, running a code review, switching Claude Code accounts via cc-max, or injecting dynamic content using the `!` sign — a skill should be the first tool considered. Skills are particularly valuable when the same type of task recurs across multiple sessions or repositories.
+- **What:** For your role at EonLabs, agent skills are the most powerful customization layer available in Claude Code. They allow you to encode specialized research engineering behaviors — baseline generation, assumption interrogation, walk-forward validation setup — as reusable, trigger-activated capabilities that run autonomously within their own scope. This directly supports Terry's expectation of disciplined, repeatable research workflows. The ability to inject dynamic content further extends this, allowing skills to adapt to the specific context of each session rather than running as rigid, static scripts.
 
 ### MCP with Claude Code & GG
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `8/9`
+- **Why:** The Model Context Protocol (MCP) extends Claude Code's capabilities by connecting it to external tools and data sources — either through local installation or remote HTTP connections. This moves Claude Code beyond its internal knowledge and skills, giving it access to live, specialized data and functional toolkits that are not available natively. For research engineering work that requires access to real-time market data, external APIs, or browser automation, MCP is the mechanism that makes that possible.
+- **When:** Relevant whenever Claude Code needs to access external resources that go beyond its built-in capabilities — for example, pulling live market data, connecting to a financial data API, or using Playwright to automate browser-based tasks. As the research workflow at EonLabs scales and becomes more sophisticated, MCP integrations will likely become a regular part of the setup rather than an occasional addition.
+- **What:** For your role at EonLabs, MCP is a high-value capability. The Enigma Trading System operates on real-time data across multiple exchanges — giving Claude Code access to relevant external data sources via MCP means research tasks can be grounded in live information rather than static files. This directly supports Terry's requirement for empirically grounded, testable hypotheses. Understanding how to configure and extend MCP connections is a skill worth investing in early, as it significantly expands what Claude Code can do autonomously within a research session.
 
 ### MCP Doom & Playwright Integration
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `3/9`
+- **Why:** MCP Doom is a game interface with no practical use for current or future EonLabs projects. Playwright allows browser interactions with specific URLs and could be relevant for specialized web tasks, but it’s not immediately needed.  
+- **When:** MCP Doom is unlikely to be used in any scenario. Playwright may be relevant for automated web interactions or research tasks in future projects.  
+- **What:** For your role at EonLabs, MCP Doom is purely recreational, while Playwright is a potential utility to keep in mind for specialized tasks that involve web automation or URL interaction.  
 
 ### Sub-agents & Multi-Agent Teams
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
+- **Relevancy:** `7/9`
+- **Why:** Sub-agents let you parallelize tasks by giving each agent its own context, rules, and permissions — useful for handling multiple features, code reviews, or research threads simultaneously. Multi-agent teams function like coordinated teams, ideal for complex or high-stakes tasks requiring collaboration between agents.  
+- **When:** Sub-agents are relevant when multiple tasks need to run in parallel within the same repository or research project. Multi-agent teams are relevant for large-scale or critical tasks that benefit from coordinated effort across agents.  
+- **What:** Sub-agents help distribute workload efficiently and manage concurrent research or development threads. Multi-agent teams are an advanced tool for coordinated, large-scale problem-solving, and knowing their capabilities prepares you for scenarios requiring complex, collaborative processing.
 
 ---
-
-*Dictated and verified using Typeless voice-to-text. All justifications reflect my own perspective on relevancy to my role.*
