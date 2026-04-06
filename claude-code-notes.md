@@ -203,40 +203,6 @@
 
 ---
 
-## 3. Surfaces
-
-### Claude Code Surfaces: Desktop & Web
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
-### Claude Chrome & Browser Extensions
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
-### VS Code & JetBrains IDE Integration
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
-### GitHub Actions & Remote Control
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
-### Computing Follow Along
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
----
-
 ## 4. Advanced
 
 ### Security Review & Output Styles
