@@ -15,22 +15,6 @@
 
 ---
 
-## 1. Introduction
-
-### Intro & Meet your Instructor
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
-### Claude Code Essentials & Guest Instructor
-- **Relevancy:** `/9`
-- **Why:**
-- **When:**
-- **What:**
-
----
-
 ## 2. Core Concepts and Foundations
 
 ### Agentic Coding Tools & Comparisons
